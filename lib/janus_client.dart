@@ -330,7 +330,7 @@ class JanusClient {
           if (webRTCHandle.remoteStream != null) {
             webRTCHandle.remoteStream.removeTrack(event.track);
             var mid = event.track.id;
-            var transceiver = peerConnection.transceivers
+            var transceiver = (await peerConnection.transceivers)
                 .firstWhere((element) => element.receiver.track == event.track);
             mid = transceiver.mid;
             plugin.onRemoteTrack(event.streams[0], event.track, mid, false);
@@ -340,7 +340,7 @@ class JanusClient {
           if (webRTCHandle.remoteStream != null) {
             webRTCHandle.remoteStream.removeTrack(event.track);
             var mid = event.track.id;
-            var transceiver = peerConnection.transceivers
+            var transceiver = (await peerConnection.transceivers)
                 .firstWhere((element) => element.receiver.track == event.track);
             mid = transceiver.mid;
             plugin.onRemoteTrack(event.streams[0], event.track, mid, false);

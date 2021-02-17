@@ -314,7 +314,7 @@ class Plugin {
     } else {
       media = prepareMedia(media);
 
-      var transceivers = _webRTCHandle.pc.transceivers;
+      var transceivers = (await _webRTCHandle.pc.transceivers);
       var audioSend = isAudioSendEnabled(media);
       var audioRecv = isAudioRecvEnabled(media);
       if (!audioSend && !audioRecv) {
@@ -381,7 +381,7 @@ class Plugin {
           // Use Transceivers
           //  Janus.log((media.replaceVideo ? "Replacing" : "Adding") + " video track:", stream.getVideoTracks()[0]);
           var videoTransceiver = null;
-          var transceivers = webRTCHandle.pc.transceivers;
+          var transceivers = (await webRTCHandle.pc.transceivers);
           if (transceivers != null && transceivers.length > 0) {
             for (RTCRtpTransceiver t in transceivers) {
               if ((t.sender != null &&
